@@ -19,6 +19,8 @@ authors.
   relink Bun against a modified JavaScriptCore.
 
 Nothing of Anthropic's Claude Code or Claude Agent SDK is included.
+`pike claude-bridge` has your machine download the SDK from npm; it stays
+Anthropic's, under the terms its own `LICENSE.md` points to.
 
 ## Pi's license
 

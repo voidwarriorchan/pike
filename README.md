@@ -72,6 +72,29 @@ processes (hands, suggest, translate) stay off until you switch them on:
 `pike config` lists the built-in extensions and turns any of them off; so does
 `"extensions": ["-builtin:translate"]` in `~/.pike/agent/settings.json`.
 
+## Claude subscriptions
+
+One extension is not built in. `claude-bridge` offers the models of a Claude
+subscription, as `claude-personal`, through Claude Code's login. It works
+through Anthropic's Claude Agent SDK, which nobody else may redistribute, so
+pike ships the bridge and your machine fetches the SDK:
+
+```sh
+pike claude-bridge
+```
+
+This downloads the SDK from npm into `~/.pike/agent/claude-bridge`, a few
+hundred megabytes because Claude Code comes with it, and switches the bridge
+on. It needs no Node or npm. Then start `pike` and choose a `claude-personal`
+model; `/claude-login` signs in if Claude Code is not logged in on this
+machine already. The SDK and your subscription are Anthropic's, under
+Anthropic's terms, which the SDK's `LICENSE.md` points to.
+
+After an upgrade pike keeps the bridge in step by itself. When a new version
+needs a newer SDK it says so at startup, and the same command fetches it.
+`pike claude-bridge remove` takes the bridge out again and keeps its settings,
+`~/.pike/agent/claude-bridge.json`.
+
 ## Where things are
 
 pike keeps to its own names, so it runs beside a Pi installation without
@@ -88,7 +111,8 @@ Pi's own documentation is shipped beside the executable and says `pi` and
 `~/.pi` throughout; read them as the names above. Everything else is Pi's:
 `AGENTS.md`, sessions, themes, MCP servers, and packages, which
 `pike install` installs as `pi install` does; an npm package needs `npm` on
-your `PATH`, as it does for Pi's own binary.
+your `PATH`, or the package manager the `npmCommand` setting names, as it
+does for Pi's own binary.
 
 ## What differs from Pi
 
