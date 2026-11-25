@@ -55,14 +55,15 @@ Run `pike` in a project. With no credentials it says so and waits: `/login`
 signs in to a provider, or start it with a provider's API key in the
 environment. `docs/providers.md` beside the executable lists the providers.
 
-These extensions are built in, and each loads by default:
+These extensions are built in. The ones that cost requests or start background
+processes (hands, suggest, translate) stay off until you switch them on:
 
 | Extension | What it adds | Before it does anything |
 | --- | --- | --- |
 | footer, quota | Working tree, model and subscription quota in the footer | Nothing |
 | choose | Choice lists the model can put to you (`/choose`) | Nothing |
 | session-recall | The model can search, read and query your past sessions | Nothing |
-| hands, hands-models | Background tasks in a read-only, isolated or direct workspace, whose patches you choose to apply | `/hands-models` once, to choose the models tasks may use |
+| hands, hands-models | Background tasks in a read-only, isolated or direct workspace, whose patches you choose to apply | `/hands on`, then `/hands-models` once, to choose the models tasks may use |
 | exa | Web search and page fetching through Exa | `/exa` once, to save an Exa API key |
 | openai-fast | Priority requests on OpenAI and Codex models | `/fast on`, per session |
 | suggest | The next prompt, predicted and drawn as ghost text; Tab fills it in | `/suggest on` |
